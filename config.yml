@@ -1,0 +1,87 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "assets/uploads"
+
+site_url: "/"
+logo_url: "/assets/vans/vans-01.png"
+
+collections:
+  - name: "portfolio"
+    label: "Portfolio"
+    files:
+      - name: "portfolio_data"
+        label: "Site Icerigi"
+        file: "content/portfolio.json"
+        format: "json"
+        fields:
+          - label: "Klasorler"
+            name: "data"
+            widget: "object"
+            fields:
+              - label: "HURUX"
+                name: "HURUX"
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields: &item_fields
+                  - { label: "Tip", name: "type", widget: "select", options: ["image", "text", "pdf"], default: "image" }
+                  - { label: "Baslik", name: "title", widget: "string" }
+                  - { label: "Gorsel / Dosya", name: "src", widget: "image", required: false }
+                  - { label: "Metin", name: "text", widget: "text", required: false }
+                  - label: "Boyut"
+                    name: "size"
+                    widget: "select"
+                    required: false
+                    default: "medium"
+                    options:
+                      - { label: "Kucuk", value: "small" }
+                      - { label: "Orta", value: "medium" }
+                      - { label: "Buyuk", value: "large" }
+                      - { label: "Tam satir", value: "full" }
+              - { label: "PAYN", name: "PAYN", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+              - { label: "PHOTOS", name: "PHOTOS", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+              - { label: "HOLLY", name: "HOLLY", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+              - { label: "VANS", name: "VANS", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+              - { label: "MandM", name: "MandM", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+              - { label: "VIDEOS", name: "VIDEOS", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+              - { label: "LOGO ARCHIVE", name: "LOGO ARCHIVE", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+              - { label: "BACKGROUNDS", name: "BACKGROUNDS", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+              - { label: "ART BOARD", name: "ART BOARD", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+              - { label: "STICKER PACK", name: "STICKER PACK", widget: "list", summary: "{{fields.title}}", fields: *item_fields }
+          - label: "Site Ayarlari"
+            name: "config"
+            widget: "object"
+            fields:
+              - { label: "Isim", name: "title", widget: "string" }
+              - { label: "Alt Baslik", name: "subtitle", widget: "string" }
+              - { label: "Overview Basligi", name: "overviewTitle", widget: "string" }
+              - { label: "Overview Aciklamasi", name: "overviewMeta", widget: "string" }
+              - label: "Hakkimda"
+                name: "about"
+                widget: "object"
+                fields:
+                  - { label: "Baslik", name: "title", widget: "string" }
+                  - { label: "Metin HTML", name: "html", widget: "text" }
+              - label: "CV"
+                name: "cv"
+                widget: "object"
+                fields:
+                  - { label: "Baslik", name: "title", widget: "string" }
+                  - { label: "Dosya", name: "src", widget: "image", required: false }
+              - label: "Sol Menu"
+                name: "sidebar"
+                widget: "object"
+                fields:
+                  - { label: "Selected Work", name: "selectedWork", widget: "list", field: { label: "Klasor", name: "folder", widget: "string" } }
+                  - { label: "Experiments", name: "experiments", widget: "list", field: { label: "Klasor", name: "folder", widget: "string" } }
+              - label: "Linkler"
+                name: "links"
+                widget: "list"
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Baslik", name: "title", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+                  - { label: "Renk", name: "color", widget: "string" }
+                  - { label: "Etiket", name: "label", widget: "string" }
